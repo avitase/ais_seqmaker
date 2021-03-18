@@ -55,7 +55,7 @@ static constexpr auto USAGE = R"(seqmaker
         -s [nm]           Spatial threshold to split sequence (default .1 nautical miles).
         -i [seconds]      Interpolation length in seconds (default 6).
         -p [dir]          Parent directories for generated files (default ./).
-        -l                Apply simple one-step ow pass filter using given spatial threshold.
+        -l                Apply simple one-step low pass filter using given spatial threshold.
         -v [kt]           Minimal average speed in kt on interpolated sequence (default 0 kt).
 )";
 
