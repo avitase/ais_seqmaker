@@ -1,0 +1,6 @@
+---
+Checks: '*,-fuchsia-*,-google-*,-zircon-*,-abseil-*,-llvm*,-modernize-use-trailing-return-type,-cppcoreguidelines-macro-usage,-cppcoreguidelines-pro-bounds-constant-array-index'
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*'
+FormatStyle: none
+
