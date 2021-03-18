@@ -12,4 +12,8 @@ $ cd build/
 $ cmake ..
 $ make
 ```
-If offer different build flags. Run a tool such as [`ccmake`](https://cmake.org/cmake/help/latest/manual/ccmake.1.html) to configure them.
+We offer different build flags. Run a tool such as [`ccmake`](https://cmake.org/cmake/help/latest/manual/ccmake.1.html) to configure them.
+Executables are placed in the `src` directory, e.g.,
+```
+$ build/src/seqmaker
+```
