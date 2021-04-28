@@ -41,7 +41,7 @@ static constexpr auto USAGE = R"(seqmaker
         $ cat my_data.csv | ./seqmaker -d ", " -N 360 -t 50 -s .5 -i 10
         Above command splits AIS data in sequences with 361 pairs of latitude and longitude each,
         corresponding to a sequence length of 1h. Within a sequence, two consecutive points deviate
-        less than 50 seconds (in the original AIS data) and 0.5 nm. The column separator is ", ".
+        less than 50 seconds (in the original AIS data) and 0.5 NM. The column separator is ", ".
 
     Options:
         -h                Prints this message.
@@ -52,7 +52,7 @@ static constexpr auto USAGE = R"(seqmaker
                           N x interpolation length (cf. argument -i) and N + 1 grid points
                           (default 3600).
         -t [seconds]      Temporal threshold to split sequence (default 60 seconds).
-        -s [nm]           Spatial threshold to split sequence (default .1 nautical miles).
+        -s [NM]           Spatial threshold to split sequence (default .1 nautical miles).
         -i [seconds]      Interpolation length in seconds (default 6).
         -p [dir]          Parent directories for generated files (default ./).
         -l                Apply simple one-step low pass filter using given spatial threshold.
