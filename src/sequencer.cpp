@@ -21,8 +21,8 @@ Sequencer::Sequencer(split_args split_args, std::string_view delimiter)
                                        std::string_view slot_str,
                                        std::string_view lat_str,
                                        std::string_view lon_str) {
-                auto one_empty = [](auto... x) { return (x.empty() || ...); };
-                if (one_empty(t_str, mmsi_str, slot_str, lat_str, lon_str)) {
+                auto any_empty = [](auto... x) { return (x.empty() || ...); };
+                if (any_empty(t_str, mmsi_str, slot_str, lat_str, lon_str)) {
                     throw std::invalid_argument(
                         "Invalid data format. At least one column is empty.");
                 }
