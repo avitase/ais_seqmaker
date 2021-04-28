@@ -68,27 +68,32 @@ TEST_CASE("Test adjacent difference", "[utility]") {
 
 TEST_CASE("Test estimation of recorded time", "[utility]") {
     const std::string T1{"123.4"};   // min 2, sec 3, msec 400
-    const std::string T2{"123.6"};   // min 2, sec 3, msec 600
+    const std::string T2{"173.6"};   // min 2, sec 53, msec 600
 
-    const std::string slot1{"2"};   // min 2, sec 2
-    const std::string slot2{"3"};   // min 2, sec 3
-    const std::string slot3{"4"};   // min 1, sec 4
+    const std::string slot1{"2"};
+    const std::string slot2{"4"};
+    const std::string slot3{"50"};
+    const std::string slot4{"55"};
 
     using namespace seqmaker;
     const auto t11 = utility::time_recorded<ais::time_t>(T1, slot1);
     const auto t12 = utility::time_recorded<ais::time_t>(T1, slot2);
     const auto t13 = utility::time_recorded<ais::time_t>(T1, slot3);
+    const auto t14 = utility::time_recorded<ais::time_t>(T1, slot4);
 
     const auto t21 = utility::time_recorded<ais::time_t>(T2, slot1);
     const auto t22 = utility::time_recorded<ais::time_t>(T2, slot2);
     const auto t23 = utility::time_recorded<ais::time_t>(T2, slot3);
+    const auto t24 = utility::time_recorded<ais::time_t>(T2, slot4);
 
     REQUIRE(t11 == 122);
-    REQUIRE(t21 == 122);
-    REQUIRE(t12 == 123);
-    REQUIRE(t22 == 123);
-    REQUIRE(t13 == 64);
-    REQUIRE(t23 == 64);
+    REQUIRE(t21 == 182);
+    REQUIRE(t12 == 124);
+    REQUIRE(t22 == 184);
+    REQUIRE(t13 == 110);
+    REQUIRE(t23 == 170);
+    REQUIRE(t14 == 115);
+    REQUIRE(t24 == 175);
 }
 
 TEST_CASE("Test low pass filter", "[utility]") {

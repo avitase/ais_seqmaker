@@ -74,20 +74,32 @@ template <typename T>
                                                     std::string_view slot_seconds) noexcept {
     auto recv = to<T>(recv_seconds, 0);
 
-    constexpr T slot_max_value = 59;
-    auto slot = to<T>(slot_seconds, slot_max_value + 1);
+    constexpr signed slot_max_value = 59;
+    auto slot = to<signed>(slot_seconds, slot_max_value + 1);
 
-    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
     if (recv == 0 || slot > slot_max_value) {
         return std::nullopt;
     }
 
-    constexpr T ONE_MINUTE = 60;
-    const auto sec = recv % ONE_MINUTE;
-    const auto slot_correction = (sec < slot ? -ONE_MINUTE : 0);
-    const auto dt = sec - slot - slot_correction;
+    constexpr signed ONE_MINUTE = 60;
+    const auto sec = static_cast<signed>(recv % static_cast<T>(ONE_MINUTE));
 
-    return recv - dt;
+    const auto slot_correction = [ONE_MINUTE](auto dt) {
+        if (dt > ONE_MINUTE / 2) {
+            return -ONE_MINUTE;
+        }
+        if (dt < -ONE_MINUTE / 2) {
+            return ONE_MINUTE;
+        }
+        return 0;
+    }(slot - sec);
+
+    const auto dt = sec - slot - slot_correction;
+    if (dt < 0) {
+        return recv + static_cast<T>(-dt);
+    }
+
+    return recv - static_cast<T>(dt);
 }
 
 template <typename InputIt, typename OutputIt, typename BinaryOperation>
