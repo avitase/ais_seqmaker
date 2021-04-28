@@ -24,36 +24,3 @@ catch_discover_tests(
         "unittests."
         OUTPUT_SUFFIX
         .xml)
-
-add_executable(constexpr_tests constexpr_tests.cpp)
-target_link_libraries(constexpr_tests PRIVATE project_options project_warnings catch_main)
-
-catch_discover_tests(
-        constexpr_tests
-        TEST_PREFIX
-        "constexpr."
-        REPORTER
-        xml
-        OUTPUT_DIR
-        .
-        OUTPUT_PREFIX
-        "constexpr."
-        OUTPUT_SUFFIX
-        .xml)
-
-add_executable(relaxed_constexpr_tests constexpr_tests.cpp)
-target_link_libraries(relaxed_constexpr_tests PRIVATE project_options project_warnings catch_main)
-target_compile_definitions(relaxed_constexpr_tests PRIVATE -DCATCH_CONFIG_RUNTIME_STATIC_REQUIRE)
-
-catch_discover_tests(
-        relaxed_constexpr_tests
-        TEST_PREFIX
-        "relaxed_constexpr."
-        REPORTER
-        xml
-        OUTPUT_DIR
-        .
-        OUTPUT_PREFIX
-        "relaxed_constexpr."
-        OUTPUT_SUFFIX
-        .xml)
